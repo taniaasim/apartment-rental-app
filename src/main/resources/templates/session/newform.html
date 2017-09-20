@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Who are you?!</title>
+<style>
+body {
+	background-color: #d3e5e0;
+}
+</style>
+</head>
+
+<body>
+	<form method="post" action="/login">
+		<input type="email" required name="email" placeholder="Your email">
+		<input type="password" required name="password" placeholder="Password">
+		<button>Login</button>
+		<input type="hidden" name="returnPath" value="{{ returnPath }}">
+	</form>
+
+</body>
+
+</html>

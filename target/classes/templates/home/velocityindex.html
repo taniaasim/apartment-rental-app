@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to your New HOME!</title>
+    <style>
+        body {
+            background-color: #d3e5e0;
+        }
+    </style>
+</head>
+
+<body>
+<a href="/apartments/new">Create new apartment</a>
+  	#if($noUser)
+  	<a href="/login">Login</a>
+  	#end
+  	
+  	#if($currentUser)
+  		Welcome,  $currentUser.firstName 
+ 
+   
+ 	#end
+ 	
+    <h1>Apartments</h1> 
+    #foreach($apartment in $apartments)
+   	
+    <div><a href="/apartments/$apartment.getId()">
+     $apartment.address 
+     </div>
+   #end
+</body>
+
+</html>
