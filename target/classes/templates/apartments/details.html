@@ -13,9 +13,9 @@
 
 <body>
 	{{> /common/_navigation }}
-	<a href="/login">Login</a>
+
     <h1>Only ${{ apartment.rent }}</h1>
-    <p>
+    
         {{ apartment.address }}
         <br> {{ apartment.city }}, {{ apartment.state }} {{ apartment.zipCode }}
         <br>
@@ -36,7 +36,7 @@
        	{{/liked}}
         
         <br> {{#owner}} 
-        <p> List of users who liked your apartment: </p>
+        <p> List of users who liked your apartment:</p>
         {{#usersWhoLikeThis}}
         <div>{{ firstName }} {{ lastName }}</div>
         {{/usersWhoLikeThis}}
@@ -51,7 +51,7 @@
         </form>
         {{/apartment.isActive}} 
         {{/owner}}
-    </p>
+   
     <dl>
         <dt>Number of bedrooms</dt>
         <dd>{{ apartment.numberOfBedrooms }}</dd>

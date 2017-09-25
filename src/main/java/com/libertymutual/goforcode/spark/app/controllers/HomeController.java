@@ -19,7 +19,6 @@ public class HomeController {
 		model.put("currentUser", req.session().attribute("currentUser"));
 		model.put("noUser", req.session().attribute("currentUser") == null);
 		return MustacheRenderer.getInstance().render("home/index.html", model);
-	//	return render(model, "/templates/home/velocityindex.html");
 		}
 	};
 	
