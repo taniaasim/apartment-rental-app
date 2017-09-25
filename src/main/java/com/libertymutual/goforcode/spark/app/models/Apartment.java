@@ -8,11 +8,11 @@ public class Apartment extends Model {
 	
 	public Apartment() { }
 	
-	public Apartment(int rent, int numberOfBedrooms, double numberOfLous, int squareFootage, String address, String city,
+	public Apartment(int rent, int numberOfBedrooms, double numberOfBathrooms, int squareFootage, String address, String city,
 			String state, String zipCode) {
 		setRent(rent);
 		setNumberOfBedrooms(numberOfBedrooms);
-		setNumberOfLous(numberOfLous);
+		setNumberOfBathrooms(numberOfBathrooms);
 		setSquareFootage(squareFootage);
 		setAddress(address);
 		setCity(city);
@@ -28,11 +28,11 @@ public class Apartment extends Model {
 		return getInteger("number_of_bedrooms");
 	}
 	
-	public double getNumberOfLous() {
-		return getDouble("number_of_lous");
+	public double getNumberOfBathrooms() {
+		return getDouble("number_of_bathrooms");
 	}
-	public void setNumberOfLous(double numberOfLous) {
-		set("number_of_lous", numberOfLous);
+	public void setNumberOfBathrooms(double numberOfBathrooms) {
+		set("number_of_bathrooms", numberOfBathrooms);
 	}
 	public int getSquareFootage() {
 		return getInteger("square_footage");
@@ -59,7 +59,7 @@ public class Apartment extends Model {
 		set("state", state);
 	}
 	public String getZipCode() {
-		return getString("zipCode");
+		return getString("zip_code");
 	}
 	public void setZipCode(String zipCode) {
 		set("zip_code", zipCode);
@@ -76,7 +76,23 @@ public class Apartment extends Model {
 	public void setNumberOfBedrooms(int numberOfBedrooms) {
 		set("number_of_bedrooms", numberOfBedrooms);
 	}
-
-
 	
+	public boolean getIsActive() {
+		return getBoolean("is_active");
+	}
+	
+	public void setIsActive(boolean value) {
+		set("is_active", value);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof Apartment) {
+			Apartment apartment = (Apartment) o; 
+			if (apartment.getId().equals(this.getId())) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

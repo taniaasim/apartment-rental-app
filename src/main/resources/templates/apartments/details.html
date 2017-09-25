@@ -12,19 +12,56 @@
 </head>
 
 <body>
+	{{> /common/_navigation }}
+	<a href="/login">Login</a>
     <h1>Only ${{ apartment.rent }}</h1>
-<p>
-  {{ apartment.address }}<br>
-  {{ apartment.city }}, {{ apartment.state }} {{ apartment.zipCode }}
-</p>
-<dl>
-  <dt>Number of bedrooms</dt>
-  <dd>{{ apartment.numberOfBedrooms }}</dd>
-  <dt>Number of bathrooms</dt>
-  <dd>{{ apartment.numberOfLous }}</dd>
-  <dt>Square footage</dt>
-  <dd>{{ apartment.squareFootage }}</dd>
-</dl>
+    <p>
+        {{ apartment.address }}
+        <br> {{ apartment.city }}, {{ apartment.state }} {{ apartment.zipCode }}
+        <br>
+        <br>
+        {{count}} likes
+        <br> {{#noUser}} 
+        <a href="/login?returnPath=/apartments/{{ apartment.id }}">Login to LIKE this apartment
+         <input type="hidden" name="returnPath" value="{{ returnPath }}">
+        </a> 
+        {{/noUser}} 
+        
+        {{^liked}}
+        {{#currentUser}} 
+        {{^owner}}
+        <form action="/apartments/{{ apartment.id }}/like" method="post">
+            <button>Like this apartment</button>
+        </form>
+        {{/owner}} 
+        {{/currentUser}}
+       	{{/liked}}
+        
+        <br> {{#owner}} 
+        <p> List of users who liked your apartment: </p>
+        {{#usersWhoLikeThis}}
+        <div>{{ firstName }} {{ lastName }}</div>
+        {{/usersWhoLikeThis}}
+        
+        {{#apartment.isActive}}
+        <form action="/apartments/{{ apartment.id }}/deactivations" method="post">
+            <button>Deactivate listing</button>
+        </form>
+        {{/apartment.isActive}} {{^apartment.isActive}}
+        <form action="/apartments/{{ apartment.id }}/activations" method="post">
+            <button>Activate listing</button>
+        </form>
+        {{/apartment.isActive}} 
+        {{/owner}}
+    </p>
+    <dl>
+        <dt>Number of bedrooms</dt>
+        <dd>{{ apartment.numberOfBedrooms }}</dd>
+        <dt>Number of bathrooms</dt>
+        <dd>{{ apartment.numberOfBathrooms }}</dd>
+        <dt>Square footage</dt>
+        <dd>{{ apartment.squareFootage }}</dd>
+    </dl>
 
 </body>
 

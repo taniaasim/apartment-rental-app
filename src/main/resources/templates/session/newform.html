@@ -12,6 +12,8 @@ body {
 </head>
 
 <body>
+{{> /common/_navigation }}
+	<h1>Login to your account</h1>
 	<form method="post" action="/login">
 		<input type="email" required name="email" placeholder="Your email">
 		<input type="password" required name="password" placeholder="Password">

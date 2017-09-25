@@ -12,6 +12,7 @@
 </head>
 
 <body>
+	{{> /common/_navigation }}
     {{#noUser}}
     <a href="/login">Login</a> {{/noUser}} {{#currentUser}} Welcome, {{ currentUser.firstName }} {{/currentUser}}
 
@@ -22,7 +23,7 @@
         <br>
         <input type="number" required name="number_of_bedrooms" placeholder="Number of bedrooms">
         <br>
-        <input type="number" step="0.5" required name="number_of_lous" placeholder="Number of lous">
+        <input type="number" step="0.5" required name="number_of_bathrooms" placeholder="Number of bathrooms">
         <br>
         <input type="number" required name="square_footage" placeholder="Square footage">
         <br>

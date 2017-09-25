@@ -1,7 +1,5 @@
 package com.libertymutual.goforcode.spark.app.controllers;
 
-import java.util.AbstractMap;
-import java.util.stream.Collectors;
 
 import com.libertymutual.goforcode.spark.app.models.User;
 import com.libertymutual.goforcode.spark.app.utilities.AutoCloseableDb;
@@ -30,14 +28,3 @@ public class UserAPIController {
 		}
 	};
 }
-		/*
-		req.queryMap("user") 
-			.toMap()
-			.entrySet()
-			.stream()
-			.map(entry -> new AbstractMap.SimpleEntry<>(entry.getKey(), entry.getValue()[0]))
-			.collect(Collectors.toMap(null, null));
-		User user = new User();
-	};*/
-	
-

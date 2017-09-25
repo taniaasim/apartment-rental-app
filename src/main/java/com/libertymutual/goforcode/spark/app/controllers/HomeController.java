@@ -5,6 +5,8 @@ import java.util.*;
 import com.libertymutual.goforcode.spark.app.VelocityTemplateEngine;
 import com.libertymutual.goforcode.spark.app.models.Apartment;
 import com.libertymutual.goforcode.spark.app.utilities.AutoCloseableDb;
+import com.libertymutual.goforcode.spark.app.utilities.MustacheRenderer;
+
 import spark.*;
 
 public class HomeController {
@@ -16,8 +18,8 @@ public class HomeController {
 		model.put("apartments", apartments);
 		model.put("currentUser", req.session().attribute("currentUser"));
 		model.put("noUser", req.session().attribute("currentUser") == null);
-	//	return MustacheRenderer.getInstance().render("home/index.html", model);
-		return render(model, "/templates/home/velocityindex.html");
+		return MustacheRenderer.getInstance().render("home/index.html", model);
+	//	return render(model, "/templates/home/velocityindex.html");
 		}
 	};
 	
