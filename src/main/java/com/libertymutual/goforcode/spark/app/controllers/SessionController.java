@@ -18,6 +18,8 @@ public class SessionController {
 	public static final Route newForm = (Request req, Response res) -> {
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("returnPath", req.queryParams("returnPath"));
+		model.put("currentUser", req.session().attribute("currentUser"));
+		model.put("noUser", req.session().attribute("currentUser") == null);
 		return MustacheRenderer.getInstance().render("session/newForm.html", model);
 	};
 
@@ -30,7 +32,6 @@ public class SessionController {
 			if (user != null && BCrypt.checkpw(password, user.getPassword())) {
 				req.session().attribute("currentUser", user);
 			}
-
 			res.redirect(req.queryParamOrDefault("returnPath", "/"));
 			return "";
 		}

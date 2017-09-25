@@ -81,16 +81,20 @@ public class ApartmentController {
 	};
 
 	public static final Route newForm = (Request req, Response res) -> {
-		return MustacheRenderer.getInstance().render("apartments/newForm.html", null);
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("currentUser", req.session().attribute("currentUser"));
+		model.put("noUser", req.session().attribute("currentUser") == null);
+		return MustacheRenderer.getInstance().render("apartments/newForm.html", model);
 
 	};
 	public static final Route create = (Request req, Response res) -> {
 		try (AutoCloseableDb db = new AutoCloseableDb()) {
+			Map<String, Object> model = new HashMap<String, Object>();
 			User currentUser = req.session().attribute("currentUser");
-			// long id = (long) currentUser.getId();
+			model.put("currentUser", req.session().attribute("currentUser"));  // THIS MAKES NAV WORK
 			Apartment apartment = new Apartment(Integer.parseInt(req.queryParams("rent")),
 					Integer.parseInt(req.queryParams("number_of_bedrooms")),
-					Double.parseDouble(req.queryParams("number_of_lous")),
+					Double.parseDouble(req.queryParams("number_of_bathrooms")),
 					Integer.parseInt(req.queryParams("square_footage")), req.queryParams("address"),
 					req.queryParams("city"), req.queryParams("state"), req.queryParams("zip_code"));
 			currentUser.add(apartment);
@@ -106,7 +110,7 @@ public class ApartmentController {
 		try (AutoCloseableDb db = new AutoCloseableDb()) {
 			List<Apartment> apartments = Apartment.where("user_id = ?", id);
 			Map<String, Object> model = new HashMap<String, Object>();
-			model.put("currentUser", req.session().attribute("currentUser"));
+			model.put("currentUser", req.session().attribute("currentUser"));  // THIS MAKES NAV WORK
 			// loop through list, if the apartment isActive is true, put it in true list.
 			// otherwise
 			// put it in false list
@@ -125,6 +129,7 @@ public class ApartmentController {
 		}
 	};
 
+	// doesn't need nav stuff
 	public static final Route like = (Request req, Response res) -> {
 		String email = req.queryParams("email");
 		String password = req.queryParams("password");
@@ -144,6 +149,7 @@ public class ApartmentController {
 		}
 	};
 
+	// doesn't need nav stuff
 	public static final Route deactivate = (Request req, Response res) -> {
 		long id = 0;
 		try (AutoCloseableDb db = new AutoCloseableDb()) {
@@ -156,6 +162,7 @@ public class ApartmentController {
 		return "";
 	};
 
+	// doesn't need nav stuff
 	public static final Route activate = (Request req, Response res) -> {
 		long id = 0;
 		try (AutoCloseableDb db = new AutoCloseableDb()) {

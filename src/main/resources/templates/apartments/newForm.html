@@ -13,9 +13,7 @@
 
 <body>
 	{{> /common/_navigation }}
-    {{#noUser}}
-    <a href="/login">Login</a> {{/noUser}} {{#currentUser}} Welcome, {{ currentUser.firstName }} {{/currentUser}}
-
+    
     <h1>Create a new apartment listing</h1>
 
     <form method="post" action="/apartments">

@@ -22,9 +22,7 @@
         <br>
         {{count}} likes
         <br> {{#noUser}} 
-        <a href="/login?returnPath=/apartments/{{ apartment.id }}">Login to LIKE this apartment
-         <input type="hidden" name="returnPath" value="{{ returnPath }}">
-        </a> 
+        <a href="/login?returnPath=/apartments/{{ apartment.id }}">Login to LIKE this apartment<input type="hidden" name="returnPath" value="{{ returnPath }}"></a> 
         {{/noUser}} 
         
         {{^liked}}

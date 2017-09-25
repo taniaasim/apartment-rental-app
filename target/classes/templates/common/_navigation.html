@@ -1,6 +1,6 @@
 <!-- This is _navigation.html -->
 <div>
-  {{#user}}
+  {{#currentUser}}
     
     <a href="/apartments/mine">Your listings</a>
     <a href="/apartments/new">Add a listing</a>
@@ -8,10 +8,10 @@
       <button>Logout</button>
       <input type="hidden" name="{{ _csrf.parameterName }}" value="{{ _csrf.token }}">
     </form>
-  {{/user}}
+  {{/currentUser}}
   {{#noUser}}
     <a href="/login">Login</a>
-    <a href="/signup">Sign-up</a>
+    <a href="/users/new">Sign up</a>
   {{/noUser}}
   
   
