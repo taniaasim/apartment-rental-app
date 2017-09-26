@@ -85,7 +85,7 @@ public class ApartmentController {
 					req.queryParams("city"), req.queryParams("state"), req.queryParams("zip_code"));
 			currentUser.add(apartment);
 			apartment.saveIt();
-			res.redirect("/");
+			res.redirect("/apartments/mine");
 			return "";
 		}
 	};
